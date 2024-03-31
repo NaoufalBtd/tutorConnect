@@ -1,28 +1,49 @@
+# web
+
+<div align="center" style="margin: 30px;">
+    <a href="https://refine.dev">
+    <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
+    </a>
+</div>
+<br/>
+
+This [Refine](https://github.com/refinedev/refine) project was generated with [create refine-app](https://github.com/refinedev/refine/tree/master/packages/create-refine-app).
+
 ## Getting Started
 
-First, run the development server:
+A React Framework for building internal tools, admin panels, dashboards & B2B apps with unmatched flexibility ✨
+
+Refine's hooks and components simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including authentication, access control, routing, networking, state management, and i18n.
+
+## Available Scripts
+
+### Running the development server.
 
 ```bash
-yarn dev
+    pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Building for production.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+    pnpm build
+```
 
-To create [API routes](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) add an `api/` directory to the `app/` directory with a `route.ts` file. For individual endpoints, create a subfolder in the `api` directory, like `api/hello/route.ts` would map to [http://localhost:3000/api/hello](http://localhost:3000/api/hello).
+### Running the production server.
+
+```bash
+    pnpm start
+```
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about **Refine**, please check out the [Documentation](https://refine.dev/docs)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
+- **NestJS Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
+- **Material UI** [Docs](https://refine.dev/docs/ui-frameworks/mui/tutorial/)
+- **Inferencer** [Docs](https://refine.dev/docs/packages/documentation/inferencer)
+- **i18n** [Docs](https://refine.dev/docs/core/providers/i18n-provider/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+MIT
