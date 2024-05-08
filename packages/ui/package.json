@@ -15,12 +15,18 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@turbo/gen": "^1.10.12",
-    "@types/node": "^20.5.2",
     "@types/eslint": "^8.44.7",
+    "@types/node": "^20.5.2",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^8.53.0",
     "react": "^18.2.0",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@gluestack-style/react": "^1.0.54",
+    "@gluestack-ui/themed": "^1.1.22",
+    "react-native-svg": "13.4.0",
+    "react-native-web": "^0.19.11"
   }
 }

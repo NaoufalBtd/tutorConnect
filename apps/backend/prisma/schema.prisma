@@ -12,3 +12,214 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  city      String?
+  country   String?
+  phone     String?
+  adresse   String?
+  birthDate DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  type      UserType
+
+  learner   Learner?
+  tutor     Tutor?
+  Token     Token[]
+}
+
+model Tutor {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user                    User                      @relation(fields: [userId], references: [id])
+  userId                  String                    @unique
+  courses                 Course[]
+  SessionRequest          SessionRequest[]
+  Session                 Session[]
+  TutorSchedule           TutorSchedule[]
+  TutorAvailableTimeSlots TutorAvailableTimeSlots[]
+  TutorFeedback           TutorFeedback[]
+}
+
+model TutorFeedback {
+  id        String   @id @default(cuid())
+  rating    Int
+  comment   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tutor   Tutor  @relation(fields: [tutorId], references: [id])
+  tutorId String
+
+  learner   Learner @relation(fields: [learnerId], references: [id])
+  learnerId String
+}
+
+model Learner {
+  id                String              @id @default(cuid())
+  user              User                @relation(fields: [userId], references: [id])
+  userId            String              @unique
+  enrollments       Enrollment[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  SessionRequest    SessionRequest[]
+  SessionEnrollment SessionEnrollment[]
+  TutorFeedback     TutorFeedback[]
+}
+
+// a moedl representing the schedule of a tutor for availability for individual sessions
+model TutorSchedule {
+  id        String   @id @default(cuid())
+  date      DateTime
+  startTime String
+  endTime   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  available Boolean
+
+  tutor   Tutor  @relation(fields: [tutorId], references: [id])
+  tutorId String
+
+  @@index([tutorId])
+}
+
+model TutorAvailableTimeSlots {
+  id        String   @id @default(cuid())
+  date      DateTime
+  startTime String
+  endTime   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tutor   Tutor  @relation(fields: [tutorId], references: [id])
+  tutorId String
+
+  @@index([tutorId])
+}
+
+model Token {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  @@index([userId])
+}
+
+model Session {
+  id          String   @id @default(cuid())
+  startAt     DateTime
+  endAt       DateTime
+  maxCapacity Int
+  sessionFee  Float
+
+  tutor             Tutor               @relation(fields: [tutorId], references: [id])
+  tutorId           String
+  SessionEnrollment SessionEnrollment[]
+}
+
+model SessionEnrollment {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  session   Session @relation(fields: [sessionId], references: [id])
+  sessionId String
+  learner   Learner @relation(fields: [learnerId], references: [id])
+  learnerId String
+}
+
+model SessionRequest {
+  id        String   @id @default(cuid())
+  learner   Learner  @relation(fields: [learnerId], references: [id])
+  learnerId String
+  tutor     Tutor    @relation(fields: [tutorId], references: [id])
+  tutorId   String
+  course    Course   @relation(fields: [courseId], references: [id])
+  courseId  String
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Enrollment {
+  id        String   @id @default(cuid())
+  course    Course   @relation(fields: [courseId], references: [id])
+  courseId  String
+  learner   Learner  @relation(fields: [learnerId], references: [id])
+  learnerId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Course {
+  id             String           @id @default(cuid())
+  name           String
+  description    String
+  price          Float
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  tutor          Tutor            @relation(fields: [tutorId], references: [id])
+  tutorId        String
+  enrollments    Enrollment[]
+  SessionRequest SessionRequest[]
+}
+
+model Category {
+  id         String    @id @default(uuid())
+  name       String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  subjects   Subject[]
+}
+
+model Subject {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  categoryId  String
+  category    Category  @relation(fields: [categoryId], references: [id])
+  materials   Material[]
+
+  @@index([categoryId], name: "category_index")
+}
+
+model Material {
+  id          String    @id @default(uuid())
+  title       String
+  content     String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  subjectId   String
+  subject     Subject   @relation(fields: [subjectId], references: [id])
+
+  @@index([subjectId], name: "subject_index")
+}
+
+
+enum UserType {
+  ADMIN
+  LEARNER
+  TUTOR
+}
+
+enum SessionRequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
