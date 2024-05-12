@@ -1,5 +1,5 @@
-import { AnimationResolver } from '@gluestack-style/animation-resolver';
-import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
+// import { AnimationResolver } from '@gluestack-style/animation-resolver';
+// import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 import { createConfig, createComponents } from '@gluestack-style/react';
 import * as componentsTheme from './theme';
 
@@ -467,7 +467,7 @@ export const gluestackUIConfig = createConfig({
       '3/6': '50%',
       '4/6': '66.666%',
       '5/6': '83.333%',
-      'full': '100%',
+      full: '100%',
     },
     borderWidths: {
       '0': 0,
@@ -477,15 +477,15 @@ export const gluestackUIConfig = createConfig({
       '8': 8,
     },
     radii: {
-      'none': 0,
-      'xs': 2,
-      'sm': 4,
-      'md': 6,
-      'lg': 8,
-      'xl': 12,
+      none: 0,
+      xs: 2,
+      sm: 4,
+      md: 6,
+      lg: 8,
+      xl: 12,
       '2xl': 16,
       '3xl': 24,
-      'full': 9999,
+      full: 9999,
     },
     breakpoints: {
       base: 0,
@@ -503,11 +503,11 @@ export const gluestackUIConfig = createConfig({
       xl: '@media screen and (min-width: 1280px)',
     },
     letterSpacings: {
-      'xs': -0.4,
-      'sm': -0.2,
-      'md': 0,
-      'lg': 0.2,
-      'xl': 0.4,
+      xs: -0.4,
+      sm: -0.2,
+      md: 0,
+      lg: 0.2,
+      xl: 0.4,
       '2xl': 1.6,
     },
     lineHeights: {
@@ -693,7 +693,7 @@ export const gluestackUIConfig = createConfig({
       },
     },
   },
-  plugins: [new AnimationResolver(MotionAnimationDriver)],
+  // plugins: [new AnimationResolver(MotionAnimationDriver)],
 });
 
 type Config = typeof gluestackUIConfig; // Assuming `config` is defined elsewhere

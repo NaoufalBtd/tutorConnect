@@ -16,6 +16,8 @@ const ProviderStory = () => {
   const toggleColorMode = async () => {
     colorMode === 'light' ? setColorMode('dark') : setColorMode('light');
   };
+  console.log(config);
+
   return (
     <GluestackUIProvider config={config} colorMode={colorMode}>
       <Box w={100}>
