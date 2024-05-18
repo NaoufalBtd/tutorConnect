@@ -10,7 +10,8 @@
     "build": "refine build",
     "start": "refine start",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
-    "refine": "refine"
+    "refine": "refine",
+    "prepare": "husky"
   },
   "dependencies": {
     "@gluestack-style/react": "^1.0.54",
