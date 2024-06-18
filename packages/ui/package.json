@@ -13,6 +13,8 @@
   },
   "devDependencies": {
     "@expo/html-elements": "^0.4.2",
+    "@gluestack-style/animation-resolver": "^1.0.4",
+    "@gluestack-style/legend-motion-animation-driver": "^1.0.3",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@turbo/gen": "^1.10.12",
@@ -22,14 +24,13 @@
     "@types/react-dom": "^18.2.0",
     "eslint": "^8.53.0",
     "react": "^18.2.0",
-    "typescript": "^5.2.2",
-    "@gluestack-style/animation-resolver": "^1.0.4",
-    "@gluestack-style/legend-motion-animation-driver": "^1.0.3"
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "@gluestack-style/react": "^1.0.54",
     "@gluestack-ui/themed": "^1.1.22",
     "@legendapp/motion": "^2.2.0",
+    "lucide-react-native": "^0.236.0",
     "react-native-svg": "13.4.0",
     "react-native-web": "^0.19.11"
   }

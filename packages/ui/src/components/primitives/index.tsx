@@ -1,5 +1,5 @@
 export { Heading } from '@gluestack-ui/themed';
-export { Text } from '@gluestack-ui/themed';
+// export { Text } from "@gluestack-ui/themed";
 export { Box } from '@gluestack-ui/themed';
 
 export { Center } from '@gluestack-ui/themed';
@@ -139,3 +139,4 @@ export {
   UnlockIcon,
   createIcon,
 } from '@gluestack-ui/themed';
+
