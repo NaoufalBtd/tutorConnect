@@ -16,6 +16,7 @@ module.exports = {
                 'test',
                 'revert',
 				'chore',
+                'WIP'
 			],
         ],
         'scope-empty':[2,'never'],
