@@ -1,3 +1,4 @@
+"use server";
 import { AuthBindings } from "@refinedev/core";
 import { cookies } from "next/headers";
 
