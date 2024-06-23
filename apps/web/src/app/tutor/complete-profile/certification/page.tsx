@@ -16,10 +16,15 @@ import {
 import type React from "react";
 
 import { Trash2 } from "lucide-react-native";
+import useStepActions from "@hooks/useStepActions";
 
 interface pageProps {}
 
 const page: React.FC<pageProps> = () => {
+	useStepActions(() => {
+		console.log("Save and continue");
+	});
+
 	return (
 		<Box>
 			<Text variant="h4">Teaching Certification</Text>
@@ -44,7 +49,6 @@ const page: React.FC<pageProps> = () => {
 					<MenuSelect
 						label="Country"
 						placeholder="Select country"
-						showIcon
 						options={[
 							{
 								label: "English",
@@ -68,7 +72,6 @@ const page: React.FC<pageProps> = () => {
 				</FormControlLabel>
 				<MenuSelect
 					placeholder="Choose certificate"
-					showIcon
 					options={[
 						{
 							label: "English",
@@ -111,8 +114,8 @@ const page: React.FC<pageProps> = () => {
 				</Text>
 				<Text variant="body1">JPG or PNG format; maximum size of 20MB.</Text>
 
-				<Box sx={{flexDirection: "row", justifyContent: "flex-start"}}>
-					<Button variant="outline">Upload certificate</Button>
+				<Box sx={{ flexDirection: "row", justifyContent: "flex-start" }}>
+					<Button variant="outline" text="Upload certificate" />
 				</Box>
 			</Box>
 		</Box>

@@ -2,22 +2,8 @@
 
 import {
 	Box,
-	FormControl,
-	Icon,
-	Input,
-	InputField,
-	InputIcon,
-	Select,
-	SelectBackdrop,
-	SelectContent,
-	SelectDragIndicator,
-	SelectDragIndicatorWrapper,
-	SelectIcon,
-	SelectInput,
-	SelectItem,
-	SelectPortal,
-	SelectTrigger,
-	Text,
+	FormControl, Input,
+	InputField, Text,
 	VStack,
 	MenuSelect,
 	CheckboxIndicator,
@@ -25,10 +11,9 @@ import {
 	CheckboxLabel,
 	Checkbox,
 	CheckIcon,
-	Button,
+	Button
 } from "@repo/ui";
 import type React from "react";
-import { ChevronDownIcon } from "lucide-react-native";
 
 // interface pageProps {}
 
@@ -74,7 +59,6 @@ const page: React.FC = () => {
 								Country of origin
 							</Text>
 							<MenuSelect
-								showIcon={true}
 								options={[{ label: "canada", value: "test" }]}
 							/>
 						</VStack>
@@ -94,9 +78,7 @@ const page: React.FC = () => {
 						</VStack>
 
 						<Box sx={{display: "flex", alignItems: "flex-end"}}>
-							<Button variant="solid" size="lg">
-								save and continue
-							</Button>
+							<Button variant="solid" size="lg" text="Save and Continue" />
 						</Box>
 					</VStack>
 				</FormControl>

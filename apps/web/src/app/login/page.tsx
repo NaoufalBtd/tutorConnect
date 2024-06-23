@@ -1,7 +1,6 @@
 import { AuthPage } from "@components/auth-page";
 import { authProviderServer } from "@providers/auth-provider";
 import { redirect } from "next/navigation";
-
 export default async function Login() {
   const data = await getData();
 

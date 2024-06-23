@@ -89,18 +89,6 @@ const page: React.FC<pageProps> = () => {
 					</HStack>
 				</VStack>
 			</Box>
-
-      <Box flexDirection="row" justifyContent="end">
-
-        <HStack space="md">
-          <Button variant="outline" size="lg">
-            Back
-          </Button>
-          <Button variant="solid" size="lg" >
-            Save and continue
-          </Button>
-        </HStack>
-      </Box>
 		</Box>
 	);
 };
