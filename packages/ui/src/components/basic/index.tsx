@@ -6,3 +6,5 @@ export {
   View,
   SectionList,
 } from '@gluestack-ui/themed';
+
+export * from './Button';

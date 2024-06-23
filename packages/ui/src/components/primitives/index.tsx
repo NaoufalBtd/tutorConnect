@@ -7,7 +7,7 @@ export { Divider } from '@gluestack-ui/themed';
 export { HStack, VStack } from '@gluestack-ui/themed';
 
 export {
-  Button,
+  // Button,
   ButtonText,
   ButtonGroup,
   ButtonIcon,
