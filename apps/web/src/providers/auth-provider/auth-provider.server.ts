@@ -1,11 +1,10 @@
-"use server";
 import { AuthBindings } from "@refinedev/core";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 export const authProviderServer: Pick<AuthBindings, "check"> = {
   check: async () => {
-    const cookieStore = cookies();
-    const auth = cookieStore.get("auth");
+    // const cookieStore = cookies();
+    const auth = true;
 
     if (auth) {
       return {
