@@ -14,8 +14,8 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
+  id        String    @id @default(cuid())
+  email     String    @unique
   name      String?
   password  String
   city      String?
@@ -28,15 +28,17 @@ model User {
   updatedAt DateTime @updatedAt
   type      UserType
 
-  learner   Learner?
-  tutor     Tutor?
-  Token     Token[]
+  learner Learner?
+  tutor   Tutor?
+  Token   Token[]
 }
 
 model Tutor {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  bio       String   @db.VarChar(255)
+  photo     Bytes
 
   user                    User                      @relation(fields: [userId], references: [id])
   userId                  String                    @unique
@@ -46,6 +48,41 @@ model Tutor {
   TutorSchedule           TutorSchedule[]
   TutorAvailableTimeSlots TutorAvailableTimeSlots[]
   TutorFeedback           TutorFeedback[]
+  TutorEducation          TutorEducation[]
+  TutorCertification      TutorCertification[]
+}
+
+model TutorEducation {
+  id         String    @id @default(cuid())
+  university String
+  degree     Degree
+  major      String
+  startDate  DateTime
+  endDate    DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+
+  tutor   Tutor  @relation(fields: [tutorId], references: [id])
+  tutorId String
+
+  @@index([tutorId])
+}
+
+model TutorCertification {
+  id          String   @id @default(cuid())
+  subject     String   @db.VarChar(100)
+  certificate String   @db.VarChar(150)
+  description String
+  issuer      String   @db.VarChar(100)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  isVerified  Boolean
+
+  tutor   Tutor  @relation(fields: [tutorId], references: [id])
+  tutorId String
+
+  @@index([tutorId])
 }
 
 model TutorFeedback {
@@ -176,41 +213,40 @@ model Course {
 }
 
 model Category {
-  id         String    @id @default(uuid())
-  name       String
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  subjects   Subject[]
+  subjects Subject[]
 }
 
 model Subject {
-  id          String    @id @default(uuid())
+  id          String   @id @default(uuid())
   name        String
   description String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  categoryId  String
-  category    Category  @relation(fields: [categoryId], references: [id])
-  materials   Material[]
+  categoryId String
+  category   Category   @relation(fields: [categoryId], references: [id])
+  materials  Material[]
 
   @@index([categoryId], name: "category_index")
 }
 
 model Material {
-  id          String    @id @default(uuid())
-  title       String
-  content     String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  subjectId   String
-  subject     Subject   @relation(fields: [subjectId], references: [id])
+  subjectId String
+  subject   Subject @relation(fields: [subjectId], references: [id])
 
   @@index([subjectId], name: "subject_index")
 }
-
 
 enum UserType {
   ADMIN
@@ -222,4 +258,11 @@ enum SessionRequestStatus {
   PENDING
   ACCEPTED
   REJECTED
+}
+
+enum Degree {
+  Bachelors
+  Masters
+  PhD
+  Other
 }
