@@ -2,6 +2,7 @@ import { APP_FILTER } from '@nestjs/core';
 import { PrismaModule } from './../prisma/prisma.module';
 import { Global, Module } from '@nestjs/common';
 import { GlobalExceptionFilter } from './shared/exceptions/global-exception.filter';
+import { PrismaClientExceptionFilter } from 'prisma/prisma-client-exception.filter';
 
 @Global()
 @Module({
@@ -10,6 +11,10 @@ import { GlobalExceptionFilter } from './shared/exceptions/global-exception.filt
     {
       provide: APP_FILTER,
       useClass: GlobalExceptionFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: PrismaClientExceptionFilter,
     },
   ],
 })
